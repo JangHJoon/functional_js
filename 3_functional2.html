@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+/* 
+    _each 
+*/
+
+var testList = [1,2,3,4,5,6,7,8];
+
+function _each(list, iter) {
+    for( var i = 0 ; i< list.length ; i++) {
+        iter(list[i]);
+    }
+    return list;
+}
+
+function _filter(list, predi){
+    var new_list = [];
+    _each(list, a => {
+        if(predi(a)) {
+            new_list.push(a);
+        }
+    });
+    return new_list;
+}
+
+console.log(_filter(testList, a => a<4));
+console.log(testList.filter(a => a<4));
+
+
+function _map(list, mapper) {
+    var new_list = [];
+    _each(list, a => {
+        new_list.push(mapper(a));
+    });
+    return new_list;
+}
+
+console.log(_map(testList, a => a*2));
+console.log(testList.map(a => a*2));
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+/*
+    _curry, _curryr, _get(다형성)
+*/
+
+function _curry(fn) {
+    return function(a, b) {
+        return arguments.length == 2 ? fn(a, b) : function(b) { return fn(a, b); };  
+    }
+}
+
+var add = _curry((a,b) => a+b);
+var add10 = add(10);
+console.log(add10(5));
+console.log(add(3)(5));
+console.log(add(3,4));
+
+function _curryr(fn) {
+    return function(a, b) {
+        return arguments.length == 2 ? fn(a, b) : function(b) { return fn(b, a); };  
+    }
+}
+
+var sub = _curryr((a,b) => a-b);
+var sub10 = sub(10);
+console.log(sub10(5));
+console.log(sub(3, 5));
+
+var _get = _curryr(function _get(obj, key) {
+    return obj == null ? undefined : obj[key]
+})
+
+
+
+var users = [{"id" : "id1", "name" : "name1"}, {"id" : "id2", "name" : "name2"}];
+
+//console.log( users[2].name ); // error
+console.log( _get(users[2],'name') );
+
+var _get_name = _get("name");
+console.log(_get_name(users[0]));
+
+var _map_get_name = _map(testList,_get("name"));
+
+
+
+
+</script>
+</body>
+</html>
