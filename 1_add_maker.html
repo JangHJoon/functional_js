@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+// 1급 함수 , 순수 함수
+function add_maker(a) {
+    return function(b) { // 변수 a에 대한 클로저
+        return a + b;
+    }
+}
+
+var add10 = add_maker(10);
+var add5 = add_maker(5);
+var add15 = add_maker(15);
+
+console.log( add10(20) );
+console.log( add5(20) );
+console.log( add15(20) );
+
+
+</script>
+</body>
+</html>
