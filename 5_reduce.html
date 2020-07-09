@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src='js/_js.js'></script>
+</head>
+<body>
+<script>
+
+function _reduce(list, iter, memo) {
+    _each(list, function(val){
+        memo = iter(memo, val);
+    })
+    return memo;
+}
+
+function _reduce_2(list, iter, memo) {
+    if(arguments.length == 2){
+        memo = list[0];
+        list = Array.prototype.slice.call(list,1);
+    }
+    _each(list, function(val){
+        memo = iter(memo, val);
+    })
+    return memo;
+}
+
+var slice = Array.prototype.slice;
+
+function _rest(list, num) {
+    return slice.call(list, num || 1);
+}
+
+function _reduce_3(list, iter, memo) {
+    if(arguments.length == 2){
+        memo = list[0];
+        list = _rest(list)
+    }
+    _each(list, function(val){
+        memo = iter(memo, val);
+    })
+    return memo;
+}
+
+console.log(_reduce([1,2,3,4],(a,b)=>a+b,0));
+console.log(_reduce_2([1,2,3,4],(a,b)=>a+b));
+console.log(_reduce_3([1,2,3,4],(a,b)=>a+b));
+
+
+</script>
+</body>
+</html>

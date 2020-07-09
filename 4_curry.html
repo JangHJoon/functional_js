@@ -6,6 +6,7 @@
     <title>Document</title>
 </head>
 <body>
+        <script src="js/_js.js"></script>
 <script>
 /*
     _curry, _curryr, _get(다형성)
@@ -48,9 +49,8 @@ console.log( _get(users[2],'name') );
 var _get_name = _get("name");
 console.log(_get_name(users[0]));
 
-var _map_get_name = _map(testList,_get("name"));
-
-
+var names = _map(users,_get("name"));
+console.log(names);
 
 
 </script>
